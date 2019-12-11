@@ -1,6 +1,6 @@
 body {
-    background: rgb(125, 198, 205);
-    color: rgb(45, 45, 45);
+    background: rgb(0, 255, 255);
+    color: rgb(255, 255, 255);
     padding: 10px;
     font-family: arial;
 }
@@ -15,7 +15,7 @@ header {
 
 /* navigation menu */
 nav {
-    background: rgb(239, 80, 41);
+    background: rgb(0, 191, 255);
     margin: 0 auto;
     display: flex;
     padding: 10px;
@@ -40,7 +40,7 @@ nav a {
 
 /* main container area beneath menu */
 main {
-    background: rgb(245, 238, 219);
+    background: rgb(0, 191, 255);
     display: flex;
     padding:inherit;
 }
@@ -65,7 +65,7 @@ main {
     font-family: monospace;
     background: #eee;
     border: 1px solid #ccc;
-    color: #222;
+    color: rgb(0, 191, 255);
     white-space: pre;
     width: 100%;
     margin-bottom: 20px;
