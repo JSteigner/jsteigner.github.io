@@ -12,10 +12,12 @@
 /** 
  * Given an input value, print the value to the screen using console.log().
  */
+ /** print to the console value
+  */
 function print(value) {
   // YOUR CODE BELOW HERE //
   
-  console.log(value);
+  console.log(value); // use console.log to print value to console
   
   // YOUR CODE ABOVE HERE //
 }

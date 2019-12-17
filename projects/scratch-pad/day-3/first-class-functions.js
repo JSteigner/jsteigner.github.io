@@ -11,13 +11,27 @@
  * return a Function that tests whether a given value is greater than the 
  * base.
  */
+ 
+ /**
+  * return a function that tests whether a given value is greater than original base value.
+  * created a return statement which creates a function with a value parameter
+  * created a conditional if else statement which checks if value is greater than base
+  */
+  
 function createGreaterThanFilter(base) {
     // YOUR CODE BELOW HERE //
+ return function(value){
+    if (value > base) {
+        return true;
+    } else {
+       return false;
+    }
+    };
+
     
     
     
-    
-    // YOUR CODE ABOVE HERE //
+    // YOUR tCODE ABOVE HERE //
 }
 
 /** 
@@ -25,9 +39,22 @@ function createGreaterThanFilter(base) {
  * return a Function that tests whether a given value is less than the 
  * base.
  */
+ 
+ /**
+  * return a function that tests whether a given value is less than original base
+  * created a return statement that contains a function with a parameter of value;
+  * created a conditional if else statement that checks whether value is less than base or not
+  */
+  
 function createLessThanFilter(base) {
     // YOUR CODE BELOW HERE //
-    
+    return function(value){
+    if (value < base) {
+        return true;
+    } else {
+       return false;
+    }
+    };
     
     
     
@@ -39,9 +66,22 @@ function createLessThanFilter(base) {
  * Function that tests whether a given String starts with the startsWith 
  * character.
  */
+ 
+ /**
+  * created a return statement that contains a function with a parameter of string;
+  * created an if else statement that checks if first index of string equals 'startsWith'
+  * and used .toLowerCase() to ensure capitilization
+  */
+  
 function createStartsWithFilter(startsWith) {
     // YOUR CODE BELOW HERE //
-    
+    return function(string){
+    if (string[0].toLowerCase() === startsWith.toLowerCase()) {
+        return true;
+    } else {
+       return false;
+    }
+    };
     
     
     
@@ -53,9 +93,23 @@ function createStartsWithFilter(startsWith) {
  * Function that tests whether a given String ends with the endsWith 
  * character.
  */
+ 
+ /**
+  * input: endsWith character
+  * output: a function that tests whether a given string ends with the endsWith character
+  * constraints: 
+  * edge case: ensure case insensitivity
+  */
+  
 function createEndsWithFilter(endsWith) {
     // YOUR CODE BELOW HERE //
-    
+     return function(string){
+    if (string[string.length-1].toLowerCase() === endsWith.toLowerCase()) {
+        return true;
+    } else {
+       return false;
+    }
+    };
     
     
     
@@ -69,9 +123,20 @@ function createEndsWithFilter(endsWith) {
  * TIP: You need to loop over the Strings, right? We need to pass each String to 
  * the modify Function, but we need to collect the results into some collection.
  */
+ 
+ /**
+  * input: array of strings and a function
+  * output: modified array of strings
+  * constraints: 
+  * edge case: need to pass array into the function
+  */
+  
 function modifyStrings(strings, modify) {
     // YOUR CODE BELOW HERE //
-    
+    var stringArray = [];
+    for (var i = 0; i <= strings.length-1; i ++) {
+        stringArray.push(modify(strings[i]));
+    }  return stringArray;
     
     
     
@@ -87,11 +152,22 @@ function modifyStrings(strings, modify) {
  * 
  * TIP: You need to loop over the Strings, right? And pass them to the test?
  */
+ 
+ /**
+  * input: array of strings and function designed to test strings
+  * output: true if all strings pass function test
+  * constraints: need to loop over strings
+  * edge case: create true boolean
+  */
+  
 function allStringsPass(strings, test) {
     // YOUR CODE BELOW HERE //
-    
-    
-    
+    for ( var i = 0; i < strings.length; i++) {
+       if (test(strings[i]) === false) {
+          return false;
+       } 
+    }
+    return true;
     
     // YOUR CODE ABOVE HERE //
 }

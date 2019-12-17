@@ -21,11 +21,26 @@
  *  b. you'll need a loop, which one is best?
  *  c. you'll wanna make use of the push() method of Array.
  */
+ 
+ /**
+  * input: two intergers
+  * output: an array containing all the numbers inclusively between the two integers
+  * constraints: need a for loop
+  * edge case: make sure it will return the numbers in reverse if start integer is higher than end integer
+  */
+  
 function range(start, end) {
     // YOUR CODE GOES BELOW HERE //
-    
-    
-    
+    var rangeArray = [];
+    if (start < end) {
+    for (var i = start; i <= end; i ++) {
+        rangeArray.push(i);
+    } return rangeArray;
+    }  else  {
+        for (var i = start; i >= end; i -- ) {
+            rangeArray.push(i);
+        } return rangeArray;
+    }
     
     // YOUR CODE GOES ABOVE HERE //
 }

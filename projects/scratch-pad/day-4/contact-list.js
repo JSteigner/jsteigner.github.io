@@ -35,27 +35,94 @@
  *          new-line character added after it!
  */
 
+/*
+* create a function that returns a contact object
+* input: key values
+* output: contactObject
+* constraints: 
+* edge case: create an object with keys and added values from parameters
+* the function creates a variable object literal then adds properties with Object.defineProperties()
+*/
+
 // YOUR CODE GOES BELOW HERE //
 function makeContact(id, nameFirst, nameLast) {
-
+       var contact = {
+           id: id,
+           nameFirst: nameFirst,
+           nameLast: nameLast
+       }; return contact;
+  
 } 
 
+ 
 
 function makeContactList() {
     /*
      * You need something here to hold contacts. See length api for a hint:
      */
-    var contacts;
-    
+    var contacts = []; // created contacts array //
+    var contact = {};
     return {
         // we implemented the length api for you //
         length: function() {
             return contacts.length;
-        }
-    }
+        },
+        addContact: function(contact) { // created contact function that pushes contacts to contact array //
+           contacts.push(contact);
+        },
+   /*
+    * create findContact function/property
+    * input: full-name string 
+    * output: contact object from contacts if true or undefined if false
+    * constraints: property of makeContactList function
+    * edge case: create a true boolean to return contact
+   */
+         findContact: function(fullName) { 
+                  for( var i = 0; i < contacts.length; i ++ ) { // made for loop to scan over contacts array //
+                  contact = contacts[i];
+                if (fullName === contact.nameFirst + ' ' + contact.nameLast) { // if i index of contacts matches fullName return true //
+                        return contact;
+                }
+                      return undefined;   // default undefined
+         }
+    },  
+    /* 
+    * create removeContact function/property
+    * input: contact object
+    * output: removes contact
+    * constraints: property of makeContactList function
+    * edge case: remove contact object from array with splice method
+    */
+        
+        removeContact: function(contact) {
+            for (var i = 0; i < contacts.length; i ++) {
+                if (contacts[i] === contact) {
+                    contacts.splice(i, 1);
+                }
+            }
+        },
+    /*
+    * create printAllContactNames function
+    * input: contact list
+    * output: return a string formatted with all the full names of the contacts seperated with a break
+    * constraints: 
+    * edge case: make sure last name has no new line character added to it
+    */
+        printAllContactNames: function() {
+            let allContacts = [];  // create allContacts variable to hold all contacts
+            for(let i = 0; i < contacts.length; i++) { // create for loop to scan over array contacts
+                contact = contacts[i];         // set contact to contain each index of contacts array
+                if (i === contacts.length-1) {  // create conditional, if the last index of contacts array
+                    allContacts.push(contact.nameFirst + " " + contact.nameLast);
+                }
+               else { allContacts.push(contact.nameFirst + " " + contact.nameLast + "\n");
+               }
+               }   return allContacts.join("");
+        }  
+    };
 }
-
-
+       
+        
 
 
 // YOUR CODE GOES ABOVE HERE //

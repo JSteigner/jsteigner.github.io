@@ -47,6 +47,11 @@ function printArrayValuesInReverse(array) {
 /** 
  * Given an input Object, return an Array containing the Object keys.
  */
+ 
+ /**
+  * create a for in loop that accesses the object keys and then return to my keys array
+  */
+  
 function getObjectKeys(object) {
   // YOUR CODE BELOW HERE //
      var keys=[];
@@ -65,6 +70,11 @@ function getObjectKeys(object) {
  * Given an input Object, loop over the Object and print its keys 
  * using console.log().
  */
+ 
+ /**
+  * create a for in loop that uses console.log to print keys to the console
+  */
+  
 function printObjectKeys(object) {
   // YOUR CODE BELOW HERE //
      for (var key in object) {
@@ -79,6 +89,12 @@ function printObjectKeys(object) {
 /** 
  * Given an input Object, return an Array containing the Object's values.
  */
+ 
+ /**
+  * use a for in loop to access the values in an object and then push those to values array,
+  * then outside of the loop return values array
+  */
+  
 function getObjectValues(object) {
   // YOUR CODE BELOW HERE //
   var values = [];
@@ -94,6 +110,11 @@ function getObjectValues(object) {
  * Given an input Object, loop over the Object and print its values 
  * using console.log().
  */
+ 
+ /**
+  * use a for in loop to access values in an object and then console.log the values to console
+  */
+  
 function printObjectValues(object) {
   // YOUR CODE BELOW HERE //
      for(var key in object) {
@@ -108,6 +129,15 @@ function printObjectValues(object) {
 /** 
  * Given an input Object, return the length of its key/value pairs
  */
+ 
+ /**
+  * create a count variable set to equal 0,
+  * use a for in loop to loop over key/value pairs in object
+  * use an if-else conditional along with Object.prototype.hasOwnProperty.call method on object and key parameters
+  * if this boolean is true than incremtent count by 1
+  * else return count
+  */
+  
 function getObjectLength(object) {
   // YOUR CODE BELOW HERE //
   var count = 0;

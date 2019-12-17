@@ -33,6 +33,13 @@
  *      the exact case.
  */
 
+/**
+ * input: hour
+ * output: greeting that correlates with time of day
+ * constraints: use an if else-if else conditional
+ * edge case: create boolean conditions
+ */
+ 
 function greeter(hour) {
     // YOUR CODE BELOW HERE //
         if (hour >= 0 && hour <= 11) {

@@ -12,8 +12,21 @@
  * TIP: In JavaScript, how can we decipher if a value is an Array? Can typeof
  * work?
  */
+ 
+ /**
+  * input: value
+  * output: true or false
+  * constraints: return true if value is an array or false if not
+  * edge case: use Array.isArray method
+  */
+  
 function isArray(value) {
     // YOUR CODE BELOW HERE //
+    if (Array.isArray(value) === true) {
+        return true;
+       } else {
+            return false;
+        }
     
     
     
@@ -29,9 +42,21 @@ function isArray(value) {
  * null, not an Array, not a Date - all of these will return 'object' if used 
  * with typeof.
  */
+ 
+ /**
+  * input: value
+  * output: true or false
+  * constraints: return true if value is an object or false if not
+  * edge case: need to create a boolean statement with use of typeof and .constructor
+  */
+  
 function isObject(value) {
     // YOUR CODE BELOW HERE //
-    
+     if (value && typeof value === 'object' && value.constructor === Object) {
+         return true;
+     }  else {
+         return false;
+     }
     
     
     
@@ -44,9 +69,22 @@ function isObject(value) {
  * 
  * TIP: Similar to isObject, but we must return true if the value is an Array.
  */
+ 
+ /**
+  * input: value
+  * output: true or false
+  * constraints: return true if value is an array or an object false if otherwise
+  * edge case: need to create a boolean statement with use of typeof and .constructor to test if its an object
+  *           and use Array.isArray to test for array, these need to be separated with || (or)
+  */
+  
 function isCollection(value) {
     // YOUR CODE BELOW HERE //
-    
+     if (value && typeof value === 'object' && value.constructor === Object || Array.isArray(value) === true) {
+         return true;
+     }  else {
+         return false;
+     }
     
     
     
@@ -72,11 +110,29 @@ function isCollection(value) {
  *    typeOf("javascript") -> "string"
  *    typeOf([1,2,3]) -> "array"
  */ 
+ 
+ /**
+  * input: value
+  * output: type of value as a string
+  * constraints: instead of typeof we need to use instanceof to test for date, Array.isArray for array, and null for null
+  * edge case: ensure they dont all return as objects
+  */
+  
 function typeOf(value) {
     // YOUR CODE BELOW HERE //
+        if (value === null) {
+            return 'null';
+        }  else if (value instanceof  Date) {
+            return 'date';
+        }  else if (Array.isArray(value)) {
+            return 'array';
+        }   else {
+        return typeof value;
+}
     
+        
     
-    
+
     
     // YOUR CODE ABOVE HERE //
 }
