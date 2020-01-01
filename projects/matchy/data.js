@@ -34,7 +34,7 @@ console.log(animal);
  * added a value of 'meep' to beginning of noises array;
  * used .push() to add 'squeak' to end of noises array;
  * used noises.length to console.log length of array;
- * accessed value of last index of noises array with bracket notation around noises.length;
+ * accessed value of last index of noises array with bracket notation around noises.length - 1;
  * printed noises to console;
  */
  

@@ -1,75 +1,136 @@
 ////////////////////////////////////////////////////////////////////////////////
 // range ///////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-
-function range() {
-
-}
+// I: two numbers; start and end; a step argument which signifies the distance between the number before or after current number
+// O: an array containing all numbers between the two inputs
+// C: include last number; 
+function range(start, end, step = start < end ? 1 : -1) {
+    let rangeOfNumbers = [];
+    if (start === end) {
+      rangeOfNumbers = [];
+    } else if ( step > 0) {
+    for(let i = start; i <= end; i += step) {
+      rangeOfNumbers.push(i);
+    }  
+    } else {
+      for (let i = start; i >= end; i += step) {
+        rangeOfNumbers.push(i);
+      }
+      } return rangeOfNumbers;
+} 
 
 ////////////////////////////////////////////////////////////////////////////////
 // sum /////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-
-function sum() {
-
+// I: an array of numbers
+// O: the sum of all numbers in array
+function sum(numbers) {
+     let total = 0;
+     for(let i = 0; i < numbers.length; i ++) {
+       total += numbers[i];
+     } return total;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // reverseArray ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-
-function reverseArray() {
-
+// I: an array
+// O: a new array
+// C: the new output array should be a reverse copy of original array
+function reverseArray(array) {
+       let newArray = [];
+       for(let i = array.length - 1; i >= 0; i --) {
+         newArray.push(array[i]);
+       } return newArray;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // reverseArrayInPlace /////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-
-function reverseArrayInPlace() {
-
+// I: an array
+// O: the same array but reversed
+function reverseArrayInPlace(array) {
+       let newArray = [];
+      for(let i = 0; i < Math.floor(array.length/2); i ++) {
+        let originalArr = array[i];
+        array[i] = array[array.length - 1 - i];
+        array[array.length - 1 - i] = originalArr;
+      }   return array;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // arrayToList /////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-
-function arrayToList() {
-
+// I: an array
+// O: an object
+// C: object must be in list form
+// E C: need to start looping from end of array 
+function arrayToList(arr) {
+     let list = null;
+     for(let i = arr.length - 1; i >= 0; i --) {
+         list = {value: arr[i], rest: list};
+     }  return list;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // listToArray /////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-
-function listToArray() {
-
+// I: object list
+// O: an array
+// E C: use different form of for loop
+function listToArray(object) {
+     let array = [];
+     for(let node = object; node; node = node.rest) {
+         array.push(node.value);
+     } return array;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // prepend /////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-
-function prepend() {
-
+// I: an element and an object list
+// O: new object list
+// C: new list should have given element added to front of list
+function prepend(value, list) {
+      return {value, rest: list};
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // nth /////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-
-function nth() {
-
+// I: an object list and a number
+// O: the element at the given number
+// C: use recursion
+function nth(list, num) {
+      if(!list) {
+          return undefined;
+      } else if( num === 0) {
+          return list.value;
+      } else {
+          return nth(list.rest, num - 1);
+      }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // deepEqual ///////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-
-function deepEqual() {
-
+// I: two values
+// O: true if they are the same and true if they are objects with the same properties
+// C: objects need to be proven equal with a recursive call
+function deepEqual(val1, val2) {
+    if ( val1 === val2) return true;
+    if( val1 === null || typeof val1 !== 'object' || val2 === null || typeof val2 !== 'object') {
+        return false;
+    }  let val1Keys = Object.keys(val1);
+       let val2Keys = Object.keys(val2);
+     if( val1Keys.length !== val2Keys.length) {
+      return false;
+    }  for (let key of val1Keys) {
+        if (!val2Keys.includes(key) || !deepEqual(val1[key], val2[key])) {
+            return false;
+        }
+    } return true;
 }
-
 ////////////////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////

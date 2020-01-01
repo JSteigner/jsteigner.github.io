@@ -122,7 +122,7 @@ function typeOf(value) {
     // YOUR CODE BELOW HERE //
         if (value === null) {
             return 'null';
-        }  else if (value instanceof  Date) {
+        }  else if (value instanceof Date) {
             return 'date';
         }  else if (Array.isArray(value)) {
             return 'array';
