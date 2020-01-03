@@ -23,7 +23,7 @@ var _ = {};
 
 _.identity = function(value) {
     return value;
-}
+};
 /** _.typeOf
 * Arguments:
 *   1) Any value
@@ -72,21 +72,21 @@ _.typeOf = function(value) {
 *   _.first(["a", "b", "c"], 2) -> ["a", "b"]
 */
 // I: array, number
-// O: empty array if array is not an array; first element if num is not a number; otherwise fisrt element
+// O: empty array if array is not an array; first element if num is not a number; otherwise first 'number' of element
 // E C: ensure num isnt negative and num is less than array length
 _.first = function(array, num){
-    let emptyArrayResult = [];
+    let numArrayResult = [];
     if (isNaN(num) === true) {
         return array[0];
     } if (num < 0) {
-        return emptyArrayResult;
+        return numArrayResult;
     } else if(Array.isArray(array) === false) {
-        return emptyArrayResult;
+        return numArrayResult;
     } else if( num > array.length) {
         return array;
     } for(let i = 0; i < num; i++) {
-            emptyArrayResult.push(array[i]);
-        }  return emptyArrayResult;
+            numArrayResult.push(array[i]);
+        }  return numArrayResult;
 };   
 /** _.last
 * Arguments:
@@ -168,7 +168,7 @@ _.indexOf = function(array, value) {
 // O: true if array contains value; false otherwise
 // C: use ternary operator
 _.contains = function(array, value) {
-     return array.includes(value) ? true : false;
+    return array.includes(value) ? true : false;
 };
 /** _.each
 * Arguments:
@@ -210,8 +210,9 @@ _.each = function(collection, test) {
 *   _.unique([1,2,2,4,5,6,5,2]) -> [1,2,4,5,6]
 */
 // I: array
-// O: new array with duplicates removed
-// C: use _indexOf()
+// O: new array
+// C: new array should have duplicates removed
+// E C: use _.indexOf()
 _.unique = function(array) {
       return array.filter((a, b) => array.indexOf(a) === b);
 };
@@ -232,10 +233,17 @@ _.unique = function(array) {
 */
 
 // I: array; function
-// O: new array of elements for which calling function returned true
-_.filter = function(test) {
-    
-}
+// O: new array
+// C: call function on each element; new array should contain elements that returned true
+_.filter = function(array, test) {
+      var myArray = [];
+     _.each(array, function(element, index, array){
+         if(test(element, index, array)){
+             myArray.push(element);
+         }
+     });
+     return myArray;
+ };
 /** _.reject
 * Arguments:
 *   1) An array
@@ -248,7 +256,17 @@ _.filter = function(test) {
 * Examples:
 *   _.reject([1,2,3,4,5], function(e){return e%2 === 0}) -> [1,3,5]
 */
-
+// I: array; function
+// O:  new array 
+// C: call funtion on every element; new array should contain elements that returned false
+_.reject = function(array, test) {
+    let newArray = [];
+    _.filter(array, function(element, index, array) {
+        if(!test(element, index, array)) {
+            newArray.push(element);
+        }
+    }); return newArray;
+};
 
 /** _.partition
 * Arguments:
@@ -268,7 +286,17 @@ _.filter = function(test) {
 *   }); -> [[2,4],[1,3,5]]
 }
 */
-
+// I: array; function
+// O: an array
+// C: call function on each element in array; save truthy elements in one array and save falsey ones in another
+// E C: output array will be an array of arrays
+_.partition = function(array, test) {
+    let newArray = [];
+    if(_.filter(array, test)) {
+            newArray.push(_.filter(array, test));
+            newArray.push(_.reject(array, test));
+        } return newArray;
+    };
 
 /** _.map
 * Arguments:
@@ -285,7 +313,18 @@ _.filter = function(test) {
 * Examples:
 *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8]
 */
-
+// I: collection; function
+// O: new array
+// C: call function for each element in array; save the value in a new array and return the new array
+// E C: should work for arrays or objects
+_.map = function(collection, test) {
+    let newArray = [];
+    _.each(collection, function(value, index, collection) {
+        newArray.push(test(value, index, collection));
+    });
+    return newArray;
+};
+         
 
 /** _.pluck
 * Arguments:
@@ -297,8 +336,14 @@ _.filter = function(test) {
 * Examples:
 *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
 */
-
-
+// I: array of objects; a property
+// O: array of property value for every element in array
+// C: use _.map()
+_.pluck = function(array, prop){
+   return _.map(array, function(value, index, array) {
+       return value[prop];
+   });
+};
 /** _.every
 * Arguments:
 *   1) A collection
@@ -319,8 +364,32 @@ _.filter = function(test) {
 *   _.every([2,4,6], function(e){return e % 2 === 0}) -> true
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
 */
-
-
+// I: collection; function
+// O: boolean
+// C: return true if calling function on every element in array returns true; return false if one of them returns false;
+//    if function is not provided, return true if every element is truthy, otherwise return false
+// E C: compensate for function not returning boolean or if no function is given
+_.every = function(collection, test) {
+       var falseArray = [];
+     _.each(collection,function(element, index, collection){
+         if(typeof test !== "function"){
+             //check typeof 'function' to ensure it is a function
+             //checking to see if the element is false
+             if(!element){
+            //push false elements into new array
+            falseArray.push(element);}
+         }
+        else if(!test(element, index, collection)){
+            //push false elements into new array
+            falseArray.push(element);
+        }
+    });
+        // is there anything in the array
+        if(falseArray.length > 0){
+        return false;
+    }
+          return true;
+};
 /** _.some
 * Arguments:
 *   1) A collection
@@ -341,8 +410,32 @@ _.filter = function(test) {
 *   _.some([1,3,5], function(e){return e % 2 === 0}) -> false
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
-
-
+// I: collection; function
+// O: a boolean
+// C: return true if calling function on at least one element in collection returns true; false if all elements return false;
+//    if no function is provided return true if at least one element is truthy, otherwise return false
+// E C: compensate for function not returning boolean or if function is not given
+_.some = function(collection, test) {
+     let trueArray = [];
+    _.each(collection, function(value, index, collection) {
+         if(typeof test !== 'function') {
+             if (value) {
+                trueArray.push(value);
+             }
+         } else if (test(value, index, collection)) {
+             trueArray.push(value);
+         }
+          else if(test(value, index, collection)){
+            //push true elements into new array
+            trueArray.push(value);
+        }
+    });
+    // is  there anything in the array
+    if(trueArray.length > 0){
+        return true;
+    }
+        return false;
+};
 /** _.reduce
 * Arguments:
 *   1) An array
@@ -361,8 +454,25 @@ _.filter = function(test) {
 * Examples:
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
-
-
+// I: array, function, seed
+// O: return value of final function call
+// C: seed must be previous result on first iteration; return value of function for next iteration
+// E C: if no seed is given use first element/value of array
+_.reduce = function(array, test, seed) { 
+        let i;
+        let previousResult;
+        if(seed !== undefined && seed !== null) {
+            i = 0;
+            previousResult = seed;
+        } else {
+            previousResult = array[0];
+            i = 1;
+        }
+         for(; i < array.length; i++) {  // loop over array
+             previousResult = test(previousResult, array[i], i);
+         }
+         return previousResult;
+};
 /** _.extend
 * Arguments:
 *   1) An Object
@@ -377,7 +487,15 @@ _.filter = function(test) {
 *   _.extend(data, {b:"two"}); -> data now equals {a:"one",b:"two"}
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
-
+// I: at least 2 objects
+// O: updated object
+// C: copy properties from object 2 to object 1
+// E C: if there are more objects passed in, copy their props to object 1 as well, in the order they are passed in
+_.extend = function(obj1, obj2, ...theArgs) {
+       Object.assign(obj1, obj2);
+       Object.assign(obj1, ...theArgs);
+       return obj1;
+};
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
