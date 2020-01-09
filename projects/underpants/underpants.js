@@ -378,13 +378,11 @@ _.every = function(collection, test) {
              if(!element){
             //push false elements into new array
             falseArray.push(element);}
-         }
-        else if(!test(element, index, collection)){
+         } else if(!test(element, index, collection)){
             //push false elements into new array
             falseArray.push(element);
         }
-    });
-        // is there anything in the array
+    }); // is there anything in the array
         if(falseArray.length > 0){
         return false;
     }
@@ -425,12 +423,8 @@ _.some = function(collection, test) {
          } else if (test(value, index, collection)) {
              trueArray.push(value);
          }
-          else if(test(value, index, collection)){
-            //push true elements into new array
-            trueArray.push(value);
-        }
     });
-    // is  there anything in the array
+    // is there anything in the array
     if(trueArray.length > 0){
         return true;
     }

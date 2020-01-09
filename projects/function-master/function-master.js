@@ -25,7 +25,7 @@ function keysToString(object) {
 // Function 3 - Values to String /////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 // convert values of object into a string and add them to array
-//use typeof to ensure you are only adding strings to array 
+// use typeof to ensure you are only adding strings to array 
 function valuesToString(object) {
     var objValues = [];
     for (var key in object) {
@@ -69,8 +69,11 @@ function capitalizeWord(string) {
 // c: ensure first letter of word is capital
 // e c: use reg exp to find boundary of words
 function capitalizeAllWords(string) {
-    return string.replace(/\b\w/g, function(string){ return string.toUpperCase() })
-};
+    return string.replace(/\b\w/g, function(string){ 
+        return string.toUpperCase(); 
+        
+    });
+}
 
 //////////////////////////////////////////////////////////////////////
 // Function 7 - Welcome Message //////////////////////////////////////
