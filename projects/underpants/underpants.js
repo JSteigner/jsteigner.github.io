@@ -75,18 +75,18 @@ _.typeOf = function(value) {
 // O: empty array if array is not an array; first element if num is not a number; otherwise first 'number' of element
 // E C: ensure num isnt negative and num is less than array length
 _.first = function(array, num){
-    let numArrayResult = [];
+    let arrayResult = [];
     if (isNaN(num) === true) {
         return array[0];
     } if (num < 0) {
-        return numArrayResult;
+        return arrayResult;
     } else if(Array.isArray(array) === false) {
-        return numArrayResult;
+        return arrayResult;
     } else if( num > array.length) {
         return array;
     } for(let i = 0; i < num; i++) {
-            numArrayResult.push(array[i]);
-        }  return numArrayResult;
+            arrayResult.push(array[i]);
+        }  return arrayResult;
 };   
 /** _.last
 * Arguments:
