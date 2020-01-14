@@ -19,10 +19,10 @@
   
   // 2. Var, Let, Const //
   /**
-   * Variables declared with keyword var have global scope which means they can be accessed throughout the program
-   * as opposed to block scope which can only be accessed in a certain function block. Var variables can also be 
-   * reassigned. Variables declared with the let keyword are restricted to block scope which means they can only be
-   * accessed in their function body. They can also be reassigned. Variables declared with the const keyword cannont be
+   * Variables declared with the keyword var will have global scope if they are declared in the global scope which means they can be accessed throughout
+   * the program as opposed to block scope which can only be accessed in a certain function block. Variables declared with the var keyword inside of a 
+   * function will be block scoped. Var variables can also be reassigned. Variables declared with the let keyword are restricted to block scope which 
+   * means they can only be accessed in their function body. They can also be reassigned. Variables declared with the const keyword cannont be
    * reassigned. Doing so will throw a reference error. Const variables also have block scope. Const variables cannot 
    * just be declared but need to be initialized when created.
    */
@@ -38,8 +38,9 @@
     * Hoisting is an action that happens at runtime and what it does is it takes variable declarations 
     * (not initialization) and brings them to the top of their respective scope. What this means is that 
     * when the program runs, certain variables will be accessible by name before they are declared in the script.
-    * Only variable names declared with the var keyword will be brought to the global scope. Variables declared with let
-    * and const are technically hoisted to the top of their scope but they are still not accessible until the interpreter
+    * Only variable names declared with the var keyword will be brought to the global scope and this will only happen if they were 
+    * declared there. When a variable is declared with the var keyword inside of a function it will be hoisted to the top of the block scope. 
+    * Variables declared with let and const are technically hoisted to the top of their scope but they are still not accessible until the interpreter
     * reaches them in the code.
     */
     
@@ -47,5 +48,5 @@
     var fireTruck = "red";  // => prints red
     console.log(ambulance); // => prints reference error
     let ambulance = "white"; 
-    console.log(policeCar); // prints reference error
+    console.log(policeCar); // => prints reference error
     const policeCar = "blue";

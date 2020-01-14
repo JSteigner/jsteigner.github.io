@@ -42,14 +42,27 @@
      
      // 5. Functions can OPTIONALLY take inputs, and OPTIONALLY return a single value. How do we specify inputs and how //
      //     do we specify outputs? //
-     
+     // example of a function with no inputs or outputs //
+     var myFunction = function named(){};
+     // example of a function with no inputs but does have an output //
+     var myFunction = function named(){
+      console.log('hello');
+     }
+     // example of a function with inputs but no output //
+     var myFunction = function named(parameter){};
      /**
       * The way we specify inputs is by passing them into the function call as arguments. The way we specify outputs is by 
       * using the return keyword inside our function code block.
       */
       
       // 6. Scope: Functions can see and modify variables in parent or global scopes. The inverse is not true //
-      
+      let x = 7;
+      function number(){
+        return x = 5;
+      }
+      console.log(x); // prints => 7
+      number();
+      console.log(x); // prints => 5
       /**
        * Functions have access to global scopes but variables created inside functions are restricted to the function
        * scope of that body. Functions do not have access to other function's scope.
@@ -58,6 +71,11 @@
      // 7. Closures: Functions form closures around the data they house. If an object returned from the function //
      //    and is held in the memory somewhere (referenced), that closure stays alive, and data can continue to //
      //    exist in these closures //
+     var y = 10;
+     function add(){
+      return y + y;
+     }
+     console.log(add());
      /**
       * Closures are functions that have accessed a variable in the global scope. Since they have done 
       * this and are referencing the location of the data, they can keep variables alive even after the parent scope

@@ -14,7 +14,8 @@
   var string = "Hello";
   console.log(string); // => prints Hello
   /**
-   * A string is a collection of characters or symbols surrounded by quotes
+   * A string is a collection of characters or symbols surrounded by quotes. A single quote or double quote may be used but the type
+   * of quote used must match and remain consistent.
    */
    
    // 3. Boolean //
@@ -27,6 +28,7 @@
     // 4. Array //
     var myArray = ['Hello', 7, null];
     console.log(myArray); // => prints ['Hello', 7, null]
+    console.log(myArray[0]); // => prints Hello
     /**
      * An array is a complex data type that is a collection of data. The data that goes into the array must be enclosed by
      * brackets. Arrays can hold any kind of data and can also hold multiple types of data. Every data type is stored at 
@@ -39,11 +41,14 @@
         key2: 'value2'
     };
     console.log(myObject); // prints => {key1: 'value1', key2: 'value2'}
+    console.log(myObject['key1']);  // prints => value1
+    console.log(myObject.key2);  // prints => value2
     /**
      * Objects are another complex data type. The data that goes into an object must be enclosed with curly braces.
      * Instead of using indexes like arrays, objects store data in key/value pairs. The key is a property of the object
      * and the value correlates with the key. Objects can contain references to any other data type. You can add 
-     * keys or values to an object through dot notation or bracket notation.
+     * keys or values to an object through dot notation or bracket notation. Bracket notation is not the same as it is with arrays 
+     * when used with objects. When using bracket notation with objects, the data inside the bracket must be surrounded by quotes.
      */
      
      // 6. Function //
@@ -100,13 +105,25 @@
            * and their values can be altered.
            */
            
+          
            // 12. Primitive values are passed to a function by COPY, complex values are by REFERENCE. What does that mean //
            //      and how are they different //
+           // copy by value example //
+           let x = 8;
+           let y = x;
+           x = 5;
+           console.log(x); // prints => 5
+           
+           // copy by reference example //
+           let dog = { sound : 'bark'};
+           let fido = dog;
+           fido.sound = 'arf';
+           console.log(dog.sound); // prints => arf
            /**
             * What this means is that primitive values are literally copied to the function and complex values are referencing
-            * data that is stored elsewhere. The difference is that since primitive values are dealing with a fixed space of memory, the value stored in the 
-            * original data is never changed and must be copied, whereas with complex data, since you are using larger bits of 
-            * information, referencing must be used to access all the information.
+            * data that is stored elsewhere. The difference is that since primitive values are dealing with a fixed space of memory, 
+            * the value stored in the original data is never changed and must be copied, whereas with complex data, since you are using 
+            * larger bits of information, referencing must be used to access all the information.
             */
          
         
