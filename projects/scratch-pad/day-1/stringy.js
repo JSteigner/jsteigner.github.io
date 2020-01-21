@@ -19,7 +19,7 @@
 function length(string) {
     // YOUR CODE BELOW  //
     var wordLength=string.length;
-return wordLength;
+    return wordLength;
 
     // YOUR CODE ABOVE HERE //
 }

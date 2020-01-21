@@ -89,7 +89,7 @@ var exponent = function(base, exp) {
     if(exp > 0) {
         return base * exponent(base, exp - 1);   // recursive case
   } else {
-         return 1 / (base * exponent(base, -1 * exp - 1));  // recursive case for negatives
+         return 1 / (base * exponent(base, -1 * exp - 1));  // recursive case for negatives // ask for help!!
   }
 };
 
@@ -125,7 +125,7 @@ var reverse = function(string) {
 // E C: compensate for spaces
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
-  string = string.toLowerCase(); // ensrue case sensitivity
+  string = string.toLowerCase(); // ensure case sensitivity
   let regex = /\s/gi;  // take out spaces with regex
   string = string.replace(regex, '');
   var firstCharacter = function(str) { // extract first character

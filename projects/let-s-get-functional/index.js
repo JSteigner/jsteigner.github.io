@@ -105,11 +105,11 @@ var friendFirstLetterCount = function(array,customer,letter){
 // return an array of names that have input name on their friends' lists
 var friendsCount = function(array, name){
      let friendsArr = [];
-     let countFriends = _.reduce(array, function(seed, element, index){
+     let countFriends = _.reduce(array, function(prevVal, element, index){
          for(let i = 0; i < element.friends.length; i ++) {
              if(name === element.friends[i].name){
-                 seed = element.name;
-                 friendsArr.push(seed);
+                 prevVal = element.name;
+                 friendsArr.push(prevVal);
              }
          } 
      }, 0); return friendsArr;

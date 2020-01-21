@@ -71,7 +71,6 @@ function capitalizeWord(string) {
 function capitalizeAllWords(string) {
     return string.replace(/\b\w/g, function(string){ 
         return string.toUpperCase(); 
-        
     });
 }
 
