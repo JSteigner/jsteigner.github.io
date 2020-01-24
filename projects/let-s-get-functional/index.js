@@ -65,12 +65,26 @@ var youngestCustomer = function(array){
 // I: array
 // O: number
 // find the average balance of all customers
-var averageBalance = function(array){
+/*var averageBalance = function(array){
           let avgBalances = array.map(customerObj => customerObj.balance);
           let trimmedBal = avgBalances.map(balStr => Number(balStr.replace(',', '').replace('$', '')));
           let totalBal = trimmedBal.reduce((seedTotal, num) => seedTotal + num);
           let finalBal = totalBal / trimmedBal.length;
           return finalBal;
+};
+*/
+var averageBalance = function(array){
+   let avgBalances = array.map(function(customerObj){  
+    customerObj.balance;   // create an array of balances
+   }); 
+   let trimmedBal = avgBalances.map(function(balStr){ // remove commas and dollar signs
+       Number(balStr.replace(',', '').replace('$', ''));
+   });
+   let totalBal = trimmedBal.reduce(function(prevTotal, currNum){  // use reduce to add current bal to previous total
+       prevTotal + currNum;
+   });
+   let finalBal = totalBal / trimmedBal.length;  // divide by length to get the avg
+   return finalBal;
 };
    
 // I: array; string of a single letter

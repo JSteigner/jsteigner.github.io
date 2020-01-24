@@ -97,7 +97,7 @@ function makeContactList() {
         removeContact: function(contact) {
             for (var i = 0; i < contacts.length; i ++) {
                 if (contacts[i] === contact) {
-                    contacts.splice(i, 1);
+                return  contacts.splice(i, 1);
                 }
             }
         },
@@ -112,7 +112,7 @@ function makeContactList() {
             let allContacts = [];  // create allContacts variable to hold all contacts
             for(let i = 0; i < contacts.length; i++) { // create for loop to scan over array contacts
                 contact = contacts[i];         // set contact to contain each index of contacts array
-                if (i === contacts.length-1) {  // create conditional, if the last index of contacts array
+                if (contacts[i] === contacts[contacts.length-1]) {  // create conditional, if the last index of contacts array
                     allContacts.push(contact.nameFirst + " " + contact.nameLast);
                 }
                else { allContacts.push(contact.nameFirst + " " + contact.nameLast + "\n");

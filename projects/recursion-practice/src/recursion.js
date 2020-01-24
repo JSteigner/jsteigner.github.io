@@ -141,7 +141,7 @@ var middleCharacters = function(str) { // extract middle characters
         return true;
     }
     if (firstCharacter(string) === lastCharacter(string)) { //recursive case
-        return palindrome(middleCharacters(string));
+        return palindrome(middleCharacters(string));  // need help!!
     }
     return false;
 };
@@ -169,7 +169,7 @@ var multiply = function(x, y){
      }  else if (y < 0){
       return -x + multiply(x, y + 1);  
      } else{
-       return x + multiply(x, y - 1);  
+       return x + multiply(x, y - 1);  // ask for help!!
      }
 };
 // 13. Write a function that divides two numbers without using the / operator  or
@@ -361,7 +361,7 @@ var flatten = function(arrays) {
 // 30. Given a string, return an object containing tallies of each letter.
 // letterTally('potato'); // {'p':1, 'o':2, 't':2, 'a':1}
 var letterTally = function(str, obj) {
-  let objResult = Array.from(arguments)[1] || {};  // return an object literal because we want to output an object
+  let objResult = Array.from(arguments)[1] || {};  // return an object literal because we want to output an object // need help here!!
   if(str.length === 0){  // base case
     return objResult;           
   } if(!objResult[str[0]]){

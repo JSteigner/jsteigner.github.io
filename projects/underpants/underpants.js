@@ -78,7 +78,7 @@ _.first = function(array, num){
     let arrayResult = [];
     if (isNaN(num) === true) {
         return array[0];
-    } if (num < 0) {
+    } else if (num < 0) {
         return arrayResult;
     } else if(Array.isArray(array) === false) {
         return arrayResult;
@@ -113,7 +113,7 @@ _.last = function(array, num) {
     let arrResult = [];
     if(Array.isArray(array) === false) {
         return arrResult;
-    } if (isNaN(num) === true) {
+    } else if (isNaN(num) === true) {
         return array[array.length - 1];
     } else if ( num < 0) {
         return arrResult;
@@ -213,8 +213,10 @@ _.each = function(collection, test) {
 // O: new array
 // C: new array should have duplicates removed
 // E C: use _.indexOf()
-_.unique = function(array) {
-      return array.filter((a, b) => array.indexOf(a) === b);
+_.unique = function(array){
+   return array.filter(function(a, b){
+     return array.indexOf(a) === b;
+   }); 
 };
 /** _.filter
 * Arguments:
@@ -372,21 +374,16 @@ _.pluck = function(array, prop){
 _.every = function(collection, test) {
        var falseArray = [];
      _.each(collection,function(element, index, collection){
-         if(typeof test !== "function"){
-             //check typeof 'function' to ensure it is a function
-             //checking to see if the element is false
-             if(!element){
-            //push false elements into new array
-            falseArray.push(element);}
-         } else if(!test(element, index, collection)){
-            //push false elements into new array
-            falseArray.push(element);
+       if(typeof test !== "function"){        //check typeof 'function' to ensure it is a function
+          if(!element){                     //checking to see if the element is false
+              falseArray.push(element);}          //push false elements into new array
+     } else if(!test(element, index, collection)){
+              falseArray.push(element);            //push false elements into new array
         }
-    }); // is there anything in the array
-        if(falseArray.length > 0){
+    }); if(falseArray.length > 0){           // is there anything in the false array
         return false;
     }
-          return true;
+         return true;
 };
 /** _.some
 * Arguments:
@@ -424,7 +421,7 @@ _.some = function(collection, test) {
              trueArray.push(value);
          }
     });
-    // is there anything in the array
+         // is there anything in the array
     if(trueArray.length > 0){
         return true;
     }
